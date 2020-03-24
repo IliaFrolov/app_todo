@@ -1,0 +1,75 @@
+<!-- <div cdkDropListGroup> -->
+<mat-card id="{{project._id}}" class="project" *ngFor="let project of projects">
+  <mat-card-title class="project-title">
+
+    <label *ngIf="!project.editMode" matBadge="{{project.tasks.amount}}" matBadgePosition="above after">
+      <mat-icon>date_range</mat-icon>{{project.name}}
+    </label>
+<form *ngIf="project.editMode" class="project__edit-project-form">
+    <mat-form-field appearance="outline" >
+      <input [formControl]="projectName" name="projectName" matInput placeholder="{{project.name}}"
+        value="{{project.name}}">
+    </mat-form-field>
+    <button [disabled]="projectName.invalid" color="primary" (click)="project.editMode = false"
+      (click)="editProject(project._id, projectName.value)" mat-button>save</button>
+    <button color="primary" (click)="project.editMode = false" mat-button>cancel</button>
+</form>
+    <div class="control">
+      <button mat-icon-button (click)="project.editMode=true" aria-label="edit">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="delete" (click)="deleteProject(this.project._id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card-title>
+  <mat-card-content>
+    <div #{{project._id}}="cdkDropList" cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+
+      <form class="project__add-task-form example-box">
+        <mat-icon>add</mat-icon>
+        <mat-form-field appearance="outline">
+          <input required name="newTaskName" matInput placeholder="New task" value=""
+            [formControl]="taskValue">
+          <mat-error *ngIf="taskValue.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <button [disabled]="taskValue.invalid" color="accent" (click)="addTask(project._id, taskValue.value, project.tasks.amount + 1, project._id)"
+          mat-flat-button>Add</button>
+      </form>
+      <div class="example-box task-box" cdkDrag *ngFor="let task of project.tasks.tasksArr">
+
+        <form *ngIf="task.editMode" class="project__edit-task-form">
+          <mat-form-field appearance="outline">
+            <input required name="taskName" [formControl]="taskName" matInput placeholder="{{task.name}}"
+              value="{{task.name}}">
+            <mat-error *ngIf="taskValue.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <button [disabled]="taskName.invalid"color="primary" (click)="task.editMode = false"  (click)="editTask(task._id, taskName.value)" (click)="taskName.reset()"
+            mat-icon-button>save</button>
+          <button color="primary" (click)="task.editMode = false" (click)="taskName.reset()" mat-button>cancel</button>
+        </form>
+        <mat-checkbox *ngIf="!task.editMode" (click)="doTask(task._id, task.done)" [(ngModel)]="task.done"
+          value="{{task.done}}">{{task.name}}</mat-checkbox>
+        <div class="control" *ngIf="!task.editMode">
+
+          <button mat-icon-button class="example-handle" cdkDragHandle aria-label="move">
+            <mat-icon>unfold_more</mat-icon>
+          </button>
+          <button mat-icon-button (click)="task.editMode=true" aria-label="edit">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="delete" (click)="deleteTask(this.task._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+
+  </mat-card-content>
+</mat-card>
+<!-- </div> -->
+<button mat-raised-button (click)="addProject()" color="primary" aria-label="Add project">
+  <mat-icon>add</mat-icon>Add TODO list
+</button>

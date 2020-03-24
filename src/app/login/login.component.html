@@ -1,0 +1,23 @@
+<form class="loginForm" [formGroup]="loginForm" novalidate (ngSubmit)="logIn()">
+  <!-- <mat-list>
+    <mat-list-item>  </mat-list-item>
+    <mat-list-item>  </mat-list-item>
+    <mat-list-item>  </mat-list-item>
+   </mat-list> -->
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input placeholder="email@mailbox.com" matInput class="form-control" name="userEmail" formControlName="userEmail" />
+    <mat-error *ngIf="loginForm.controls['userEmail'].invalid && loginForm.controls['userEmail'].touched">
+      {{getEmailErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input placeholder="" matInput class="form-control" name="userPassword" formControlName="userPassword" />
+    <mat-error *ngIf="loginForm.controls['userPassword'].invalid && loginForm.controls['userPassword'].touched">
+      {{getPasswordErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <button [disabled]="loginForm.invalid" color="accent" mat-flat-button>Log in</button>
+
+</form>

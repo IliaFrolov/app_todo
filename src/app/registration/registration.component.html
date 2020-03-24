@@ -1,0 +1,29 @@
+<form class="regForm" [formGroup]="regForm" novalidate (ngSubmit)="addUser()">
+  <!-- <mat-list>
+    <mat-list-item>  </mat-list-item>
+    <mat-list-item>  </mat-list-item>
+    <mat-list-item>  </mat-list-item>
+   </mat-list> -->
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input placeholder="" matInput class="form-control" name="userName" formControlName="userName" />
+    <mat-error *ngIf="regForm.controls['userName'].invalid && regForm.controls['userName'].touched">
+      {{getNameErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input placeholder="email@mailbox.com" matInput class="form-control" name="userEmail" formControlName="userEmail" />
+    <mat-error *ngIf="regForm.controls['userEmail'].invalid && regForm.controls['userEmail'].touched">
+      {{getEmailErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input placeholder="" matInput class="form-control" name="userPassword" formControlName="userPassword" />
+    <mat-error *ngIf="regForm.controls['userPassword'].invalid && regForm.controls['userPassword'].touched">
+      {{getPasswordErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <button [disabled]="regForm.invalid" color="accent" mat-flat-button>Sing up</button>
+
+</form>
