@@ -2,9 +2,7 @@
   <h1>{{title}}</h1>
   <nav>
     <a mat-raised-button routerLink="/">Welcome</a>
-    <a mat-raised-button routerLink="/todo">Todo list</a>
-    <a mat-raised-button routerLink="/login">login</a>
-    <a mat-raised-button routerLink="/singup">singup</a>
+    <a *ngIf="this.todoService.currentUserId" mat-raised-button  (click)="this.todoService.currentUserId = null" routerLink="/">LogOut</a>
     <a mat-raised-button routerLink="/user">user</a>
   </nav>
 

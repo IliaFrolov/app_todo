@@ -35,20 +35,20 @@ export class TodoService {
   logIn(email: string, password: string): Observable<User> {
 
     let user = USERS.find(user => user.email === email && user.password === password);
-    console.log(user)
+    // console.log(user)
     return of(user)
   }
   getUserById(id: number): Observable<User> {
-    console.log(USERS.find(user => user._id === id))
+    // console.log(USERS.find(user => user._id === id))
     return of(USERS.find(user => user._id === id))
   }
   addProjectToUserById(id: number, p_id: number): Observable<User[]> {
     USERS.find(user => user._id === id).projects.projectsArr.push(p_id)
-    console.log(USERS)
+    // console.log(USERS)
     return of(USERS)
   }
   getUsers(): Observable<User[]> {
-    console.log(USERS)
+    // console.log(USERS)
     return of(USERS)
   }
 
@@ -59,7 +59,7 @@ export class TodoService {
     return of(PROJECTS.filter(project => user.projects.projectsArr.some(id => project._id === id)))
   }
   getProjects(): Observable<Project[]> {
-    console.log(PROJECTS)
+    // console.log(PROJECTS)
     return of(PROJECTS);
   }
 

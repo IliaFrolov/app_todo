@@ -1,3 +1,4 @@
+import { TodoService } from './todo.service';
 
 import { Component } from '@angular/core';
 
@@ -10,5 +11,5 @@ export class AppComponent {
   title = 'Simple todo app';
 
 
-  constructor(){ }
+  constructor( public todoService: TodoService ){ }
 }

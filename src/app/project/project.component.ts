@@ -77,16 +77,16 @@ export class ProjectComponent implements OnInit {
   }
   addProject(): void {
     this.todoService.addProject(new Project(this.todoService.newId(), 'New project')).subscribe(projects => this.projects = projects);
-    this.getProjects();
+    this.getUsersProjects(this.todoService.currentUserId)
   }
   deleteProject(id: number): void {
     this.todoService.deleteProject(id).subscribe(projects => this.projects = projects);
-    this.getProjects();
+    this.getUsersProjects(this.todoService.currentUserId)
   }
   doAllTask(id: number, value: boolean) {
     this.todoService.doAllTask(id, value).subscribe(tasks => this.tasks = tasks);
     this.getTasks();
-    this.getProjects();
+    this.getUsersProjects(this.todoService.currentUserId)
   }
 
   getTasks(): void {
@@ -98,7 +98,7 @@ export class ProjectComponent implements OnInit {
     if (!name) throw (new Error('needs name'))
     this.todoService.addTask(new Task(this.todoService.newId(), p_id, name)).subscribe();
     this.todoService.editProjectTaskAmound(project_id).subscribe(projects => this.projectRes = projects);
-    this.getProjects()
+    this.getUsersProjects(this.todoService.currentUserId)
   }
   editTask(id: number, name: string): void {
     this.todoService.editTask(id, name).subscribe(tasks => this.tasks = tasks);
@@ -109,21 +109,21 @@ export class ProjectComponent implements OnInit {
   upTask(id: number) {
     this.todoService.upTask(id).subscribe(tasks => this.tasks = tasks);
     this.getTasks();
-    this.getProjects();
+    this.getUsersProjects(this.todoService.currentUserId)
   }
   downTask(id: number, taskAmound: number) {
     this.todoService.downTask(id, taskAmound).subscribe(tasks => this.tasks = tasks);
     this.getTasks();
-    this.getProjects();
+    this.getUsersProjects(this.todoService.currentUserId)
   }
   drop(event: CdkDragDrop<Task[]>) {
     this.todoService.moveTask(event).subscribe(tasks => this.tasks = tasks);
     this.getTasks();
-    this.getProjects();
+    this.getUsersProjects(this.todoService.currentUserId)
   }
   deleteTask(id: number): void {
     this.todoService.deleteTask(id).subscribe(tasks => this.tasks = tasks);
-    this.getProjects();
+    this.getUsersProjects(this.todoService.currentUserId)
   }
 
   ngOnInit(): void {

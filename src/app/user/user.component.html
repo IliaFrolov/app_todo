@@ -1,1 +1,10 @@
-<p>user works!</p>
+<mat-card>
+  <mat-list role="list">
+    <mat-list-item role="listitem">{{user._id}}</mat-list-item>
+    <mat-list-item role="listitem">{{user.email}}</mat-list-item>
+  <mat-list-item role="listitem">{{user.name}}</mat-list-item>
+  <mat-list-item role="listitem">{{user.password}}</mat-list-item>
+  <mat-list-item role="listitem">{{user.projects.amount}}</mat-list-item>
+</mat-list>
+</mat-card>
+

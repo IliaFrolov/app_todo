@@ -9,9 +9,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'singup', component: RegistrationComponent },
-  { path: 'todo', component: ProjectComponent },
   { path: 'todo/:id', component: ProjectComponent },
   { path: 'user', component: UserComponent },
   { path: 'user/:id', component: UserComponent },
